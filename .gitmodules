@@ -1,0 +1,3 @@
+[submodule "AltiumSharp"]
+	path = AltiumSharp
+	url = git@github.com:finomen/AltiumSharp.git

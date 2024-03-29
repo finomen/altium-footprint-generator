@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AltiumFootprintGenerator", "AltiumFootprintGenerator\AltiumFootprintGenerator.csproj", "{D83AD58B-4F9B-4C4C-B26C-57FA555FB8FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OriginalCircuit.AltiumSharp", "..\AltiumSharp\AltiumSharp\OriginalCircuit.AltiumSharp.csproj", "{010D5B33-A828-435A-B050-BD74851609D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D83AD58B-4F9B-4C4C-B26C-57FA555FB8FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83AD58B-4F9B-4C4C-B26C-57FA555FB8FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83AD58B-4F9B-4C4C-B26C-57FA555FB8FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83AD58B-4F9B-4C4C-B26C-57FA555FB8FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{010D5B33-A828-435A-B050-BD74851609D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{010D5B33-A828-435A-B050-BD74851609D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{010D5B33-A828-435A-B050-BD74851609D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{010D5B33-A828-435A-B050-BD74851609D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82398C8F-2E5E-443A-9BDE-22B83EA7F6D2}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AltiumFootprintGenerator": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\finom\\altium-generator"
+    }
+  }
+}
