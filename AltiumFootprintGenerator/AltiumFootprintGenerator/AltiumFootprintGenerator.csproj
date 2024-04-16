@@ -1,14 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <EnableUnsafeBinaryFormatterSerialization>true</EnableUnsafeBinaryFormatterSerialization>
+    <Configurations>Release;Debug</Configurations>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\AltiumSharp\AltiumSharp\OriginalCircuit.AltiumSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="OCCTS" Version="0.0.3" />
+    <PackageReference Include="pythonnet" Version="3.1.0-preview2024-03-03" />
+    <PackageReference Include="System.IO.Hashing" Version="9.0.0-preview.2.24128.5" />
   </ItemGroup>
 
 </Project>

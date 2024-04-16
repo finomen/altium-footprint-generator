@@ -2,7 +2,7 @@
   "profiles": {
     "AltiumFootprintGenerator": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\finom\\altium-generator"
+      "commandLineArgs": "capc0603.json CAPC0603.PcbLib"
     }
   }
 }
