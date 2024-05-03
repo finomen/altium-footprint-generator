@@ -68,23 +68,20 @@ public abstract class SmtChip : FootprintBase
     private double ZMax(SolderGoals goal)
     {
         var zMax = Length.Min + 2 * goal.JToe + Math.Sqrt(Math.Pow(Length.Tolerance, 2) + Math.Pow(GlobalParameters.Tolerances.Fabrication, 2) + Math.Pow(GlobalParameters.Tolerances.Placement, 2));
-        //TODO: Roundoff tothenearest twoplace evendecimal, i.e.,1.00,1.20,1.40
-        zMax = Math.Round(zMax, 2);
+        zMax = Math.Round(zMax / 2, 2) * 2;
         return zMax;
     }
 
     private double GMin(SolderGoals goal)
     {
         var gMin = Length.Max - TerminalSize.Min * 2 - 2 * goal.JHeel - Math.Sqrt(Math.Pow(Length.Tolerance + TerminalSize.Tolerance, 2) + Math.Pow(GlobalParameters.Tolerances.Fabrication, 2) + Math.Pow(GlobalParameters.Tolerances.Placement, 2));
-        //TODO: Roundoff tothenearest twoplace evendecimal, i.e.,1.00,1.20,1.40
-        gMin = Math.Round(gMin, 2);
+        gMin = Math.Round(gMin / 2, 2) * 2;
         return gMin;
     }
 
     private double XMax(SolderGoals goal)
     {
         var xMax = Width.Min + 2 * goal.JSide + Math.Sqrt(Math.Pow(Width.Tolerance, 2) + Math.Pow(GlobalParameters.Tolerances.Fabrication, 2) + Math.Pow(GlobalParameters.Tolerances.Placement, 2));
-        //TODO: Roundoff tothenearestoneplace decimal, i.e.,1.0,1.1,1.2,1.3
         xMax = Math.Round(xMax, 1);
         return xMax;
     }
