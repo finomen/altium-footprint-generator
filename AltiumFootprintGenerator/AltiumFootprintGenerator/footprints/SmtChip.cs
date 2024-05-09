@@ -8,11 +8,8 @@ namespace AltiumFootprintGenerator.footprints;
 public abstract class SmtChip : FootprintBase
 {
     public abstract override string Name { get; }
-
-    public override string Variation { get; set; } = "";
+    
     public abstract override string Description { get; }
-    [JsonIgnore]
-    protected abstract StepModel StepModel { get;  }
     protected abstract Dimension TerminalSize { get; }
     protected abstract Dimension Height { get; }
     protected abstract Dimension Width { get; }
@@ -99,33 +96,6 @@ public abstract class SmtChip : FootprintBase
         RenderCourtyard(comp, zMax, xMax, goal.Courtyard);
         RenderSilk(comp, zMax, xMax);
         RenderAssembly(comp);
-    }
-    
-    
-    private void AddBody(PcbComponent comp, string name)
-    {
-        var b = new PcbComponentBody();
-        b.ModelId = "{" + Guid.NewGuid().ToString().ToUpper() + "}";
-        b.ArcResolution = Coord.FromMils(0.5);
-        b.Identifier = name;
-        b.StepModel = StepModel.Model;
-
-        b.Layer = Layer.Mechanical9;
-        b.V7Layer = Layer.Mechanical9.Name.ToUpper();
-        b.Model2DLocation = new CoordPoint(0, 0);
-        b.Model2DRotation = 0;
-        b.Model3DDz = Coord.FromMMs(0);
-
-        b.TextureCenter = new CoordPoint(0, 0);
-        b.TextureSize = new CoordPoint(0, 0);
-                
-        b.OverallHeight = StepModel.Height;
-        b.StandOffHeight = StepModel.StandoffHeight;
-        b.TextureSize = CoordPoint.FromMils(0.0001, 0.0001);
-
-        b.Outline.AddRange(StepModel.Outline);
-        
-        comp.Add(b);
     }
 
 
@@ -216,7 +186,7 @@ public abstract class SmtChip : FootprintBase
         }
     }
     
-    private PcbComponent Build(Density density)
+    protected override PcbComponent Build(Density density)
     {
         var comp = new PcbComponent();
         comp.ItemGuid = "{" + Guid.NewGuid().ToString().ToUpper() + "}";
@@ -229,14 +199,6 @@ public abstract class SmtChip : FootprintBase
         return comp;
     }
 
-    public override List<string> Vairants => Enum.GetValues<Density>().Select(x => Name + Variation + x.Suffix()).ToList();
-
-    [JsonIgnore]
-    public override PcbComponent Least => Build(Density.Least);
-    [JsonIgnore]
-    public override PcbComponent Nominal => Build(Density.Nominal);
-    [JsonIgnore]
-    public override PcbComponent Most => Build(Density.Most);
     public override bool Equals(IFootprint? other)
     {
         if (GetType() != other?.GetType())

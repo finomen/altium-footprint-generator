@@ -21,15 +21,3 @@ public interface IFootprint : IEquatable<IFootprint>
     
     List<string> Vairants { get; }
 }
-
-public abstract class FootprintBase : IFootprint
-{
-    public abstract bool Equals(IFootprint? other);
-    public abstract PcbComponent Least { get; }
-    public abstract PcbComponent Nominal { get; }
-    public abstract PcbComponent Most { get; }
-    public abstract string Name { get; }
-    public abstract string Description { get; }
-    public abstract string Variation { get; set; }
-    public abstract List<string> Vairants { get; }
-}

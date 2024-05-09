@@ -23,6 +23,14 @@ public static class PcbComponentExtensions
         comp.Line( layer, lw, x + w / 2, y + h / 2, x - w / 2, y + h / 2);
         comp.Line( layer, lw, x - w / 2, y + h / 2, x - w / 2, y - h / 2);
     }
+    
+    public static void Polygon(this PcbComponent comp, Layer layer, double lw, List<(double x, double y)> points)
+    {
+        for (int i = 0; i < points.Count; ++i)
+        {
+            comp.Line(layer, lw, points[i].x, points[i].y, points[(i + 1) % points.Count].x, points[(i + 1) % points.Count].y);
+        }
+    }
 
     public static void FullCircle(this PcbComponent comp, Layer layer, double x, double y, double r)
     {
