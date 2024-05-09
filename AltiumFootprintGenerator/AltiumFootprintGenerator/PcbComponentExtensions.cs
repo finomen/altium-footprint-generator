@@ -23,4 +23,16 @@ public static class PcbComponentExtensions
         comp.Line( layer, lw, x + w / 2, y + h / 2, x - w / 2, y + h / 2);
         comp.Line( layer, lw, x - w / 2, y + h / 2, x - w / 2, y - h / 2);
     }
+
+    public static void FullCircle(this PcbComponent comp, Layer layer, double x, double y, double r)
+    {
+        var c = new PcbArc();
+        c.Location = CoordPoint.FromMMs(x, y);
+        c.Radius = Coord.FromMMs(r / 2);
+        c.Width = Coord.FromMMs(r);
+        c.StartAngle = 0;
+        c.EndAngle = 360;
+        c.Layer = layer;
+        comp.Add(c);
+    }
 }

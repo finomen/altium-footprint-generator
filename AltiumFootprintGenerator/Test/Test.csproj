@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AltiumFootprintGenerator\AltiumFootprintGenerator.csproj" />
+      <ProjectReference Include="..\AltiumSymbolGenerator\AltiumSymbolGenerator.csproj" />
     </ItemGroup>
 
 </Project>

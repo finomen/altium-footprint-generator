@@ -13,7 +13,16 @@ namespace AltiumFootprintGenerator
     public class Dimension
     {
         public double Value { get; set; }
-        public double Tolerance => Math.Max(Max  - Value, Value - Min);
+
+        public double Tolerance
+        {
+          get => Math.Max(Max  - Value, Value - Min);
+          set
+          {
+              Min = Value - Tolerance;
+              Max = Value + Tolerance;
+          }
+        } 
 
         public double Min { get; set; }
 
