@@ -7,10 +7,20 @@ using OriginalCircuit.AltiumSharp.Records;
 
 namespace AltiumSymbolGenerator;
 
-public class GenericConnector : ISymbol
+public class GenericConnector : SymbolBase
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public override bool Equals(object? obj)
+    {
+        if (obj is GenericConnector conn)
+        {
+            return Name == conn.Name && Pins == conn.Pins && MountingHoles == conn.MountingHoles;
+        }
+
+        return false;
+    }
+
+    public override string Name { get; set; }
+    public override string Description { get; set; }
     
     public int Pins { get; set; }
 
@@ -68,7 +78,7 @@ public class GenericConnector : ISymbol
     }
     
     
-    public SchComponent Component
+    public override SchComponent Component
     {
         get
         {
