@@ -4,19 +4,31 @@ using AltiumFootprintGenerator.footprints.molex.picoblade;
 using AltiumSymbolGenerator;
 using OriginalCircuit.AltiumSharp.Records;
 
-/*
+
 var lib = new PcbLibrary();
 
-
-lib.Add(new PicoBladeRaSmt()
+var bga = new Bga()
 {
-    Coating = Coating.Gold,
-    PartNumber = "TEST PART",
-    Circuits = 5,
-});
+    Rows = 10,
+    Columns = 10,
+    Width = 10,
+    Length = 10,
+    Thickness = 2,
+    Pitch = 0.6,
+    PadSize = 0.25,
+    BallDiameter = 0.3,
+    StandoffHeight = 0.2,
+};
+
+bga.PresentPins = bga.Balls
+    .Where(x =>
+        !((x.Designator[0] == 'C' || x.Designator[0] == 'H') && x.Designator[1] >= '3' && x.Designator[1] <= '8'))
+    .Select(x => x.Designator).ToList();
+
+lib.Add(bga);
 
 lib.Save("Test.PcbLib");
-*/
+
 var slib = new SchLibrary();
 
 slib.Add(new IntegratedCircuit()
