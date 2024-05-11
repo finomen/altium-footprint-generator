@@ -26,7 +26,7 @@ public class GenericConnector : SymbolBase
 
     public int MountingHoles { get; set; } = 0;
 
-    private void RenderPower(SchComponent comp)
+    private void Render(SchComponent comp)
     {
         var vSpace = Pins;
         if (MountingHoles > 0)
@@ -88,7 +88,7 @@ public class GenericConnector : SymbolBase
             comp.Comment.Text = Name;
             comp.ComponentDescription = Description;
             
-            RenderPower(comp);
+            Render(comp);
             
 
             return comp;
