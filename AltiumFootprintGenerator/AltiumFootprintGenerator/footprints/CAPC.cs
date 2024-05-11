@@ -5,7 +5,7 @@ namespace AltiumFootprintGenerator.footprints;
 public class Capc : SmtChip
 {
     public override string Name => $"CAPC{(int)(Length.Value * 10):00}{(int)(Width.Value * 10):00}X{(int)(Height.Value * 100):000}";
-    public override string Description => "Capacitors, Chip, Non-polarized";
+    public override string Description { get; set; } = "Capacitors, Chip, Non-polarized";
 
     protected override StepModel StepModel => _stepModel.Value;
 

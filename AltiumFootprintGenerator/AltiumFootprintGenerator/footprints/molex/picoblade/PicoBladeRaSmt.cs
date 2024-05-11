@@ -23,7 +23,7 @@ public class PicoBladeRaSmt : FootprintBase
     public override string Name => PartNumber;
     public int Circuits { get; set; }
 
-    public override string Description => $"Molex PicoBlade {Circuits}-Pin Right-Angle Connector with {Coating} Coating";
+    public override string Description { get; set; }
 
     private SolderGoals Goals(Density density)
     {
@@ -199,5 +199,6 @@ public class PicoBladeRaSmt : FootprintBase
     public PicoBladeRaSmt()
     {
         _stepModel = new Lazy<StepModel>(this.MakeStep);
+        Description = $"Molex PicoBlade {Circuits}-Pin Right-Angle Connector with {Coating} Coating";
     }
 }

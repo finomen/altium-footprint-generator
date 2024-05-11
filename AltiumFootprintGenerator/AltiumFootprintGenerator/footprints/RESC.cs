@@ -5,7 +5,7 @@ namespace AltiumFootprintGenerator.footprints;
 public class Resc : SmtChip
 {
     public override string Name => $"RESC{(int)(Length.Value * 10):00}{(int)(Width.Value * 10):00}X{(int)(Height.Value * 100):000}";
-    public override string Description => "Resistors, Chip";
+    public override string Description { get; set; } = "Resistors, Chip";
 
     protected override StepModel StepModel => _stepModel.Value;
 

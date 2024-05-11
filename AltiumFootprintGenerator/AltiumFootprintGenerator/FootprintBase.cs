@@ -9,7 +9,7 @@ public abstract class FootprintBase : IFootprint
 {
     public abstract bool Equals(IFootprint? other);
     public abstract string Name { get; }
-    public abstract string Description { get; }
+    public abstract string Description { get; set; }
     public string Variation { get; set; } = "";
 
     protected abstract PcbComponent Build(Density density);

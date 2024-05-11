@@ -7,23 +7,23 @@ using OriginalCircuit.AltiumSharp.Records;
 
 var lib = new PcbLibrary();
 
-var bga = new Bga()
+var bga = new Qfn()
 {
-    Rows = 10,
-    Columns = 10,
-    Width = 10,
-    Length = 10,
-    Thickness = 2,
-    Pitch = 0.6,
-    PadSize = 0.25,
-    BallDiameter = 0.3,
-    StandoffHeight = 0.2,
+    HPins = 17,
+    VPins = 17,
+    Width = 8,
+    Length = 8,
+    Pitch = 0.4,
+    PadWidth = 0.2,
+    PadLength = 0.5,
+    Thickness = 0.9,
+    NameBase = "VFQFPN",
+    Description = "VFQFPN68, 8 x 8 mm, 0.4 mm pitch, very thin fine pitch quad flat package outline",
+    ExposedPad = true,
+    ExposedPadWidth = 6.4,
+    ExposedPadLength = 6.4,
 };
 
-bga.PresentPins = bga.Balls
-    .Where(x =>
-        !((x.Designator[0] == 'C' || x.Designator[0] == 'H') && x.Designator[1] >= '3' && x.Designator[1] <= '8'))
-    .Select(x => x.Designator).ToList();
 
 lib.Add(bga);
 

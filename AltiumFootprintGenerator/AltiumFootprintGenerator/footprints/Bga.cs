@@ -9,7 +9,6 @@ public class Bga : FootprintBase
 {
     public Bga()
     {
-        PinSpec = $"{Pins}";
         _stepModel = new Lazy<StepModel>(this.MakeStep);
     }
     
@@ -60,7 +59,6 @@ public class Bga : FootprintBase
     public bool CollapsingBalls { get; set; } = false;
 
     public string NameBase { get; set; } = "BGA";
-    public string PinSpec { get; set; }
     
     public List<string>? PresentPins { get; set; }
 
@@ -77,8 +75,8 @@ public class Bga : FootprintBase
         }
     }
     
-    public override string Name => $"{NameBase}${PinSpec}{(CollapsingBalls ? "C" : "N")}{Pitch:0.00}P{Columns}X{Rows}_{Length:0.0}X{Width:0.0}X{Thickness:0.0}{RemovedPinSpec}";
-    public override string Description { get; }
+    public override string Name => $"{NameBase}{Pins}{(CollapsingBalls ? "C" : "N")}{Pitch:0.00}P{Columns}X{Rows}_{Length:0.0}X{Width:0.0}X{Thickness:0.0}{RemovedPinSpec}";
+    public override string Description { get; set; }
 
     private static string BallName(int row, int column)
     {

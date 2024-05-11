@@ -53,12 +53,12 @@ public enum Position
 public class PinGroup
 {
     public Position Position { get; set; }
-    public List<PinInfo> Pins { get; set; }
+    public List<PinInfo> Pins { get; set; } = new List<PinInfo>();
 }
 
 public class Part
 {
-    public List<PinGroup> PinGroups { get; set; }
+    public List<PinGroup> PinGroups { get; set; } = new List<PinGroup>();
 }
 
 public class IntegratedCircuit : SymbolBase
@@ -87,11 +87,11 @@ public class IntegratedCircuit : SymbolBase
         var topGroups = part.PinGroups.Where(x => x.Position == Position.Top).ToList();
         var bottomGroups = part.PinGroups.Where(x => x.Position == Position.Bottom).ToList();
 
-        var leftWidth = leftGroups.SelectMany(x => x.Pins.Select(x => x.MaximumNameLength)).Max();
-        var rightWidth = rightGroups.SelectMany(x => x.Pins.Select(x => x.MaximumNameLength)).Max();
+        var leftWidth = leftGroups.SelectMany(x => x.Pins.Select(x => x.MaximumNameLength)).Union(new int[]{0}).Max();
+        var rightWidth = rightGroups.SelectMany(x => x.Pins.Select(x => x.MaximumNameLength)).Union(new int[]{0}).Max();
         
-        var topHeight = topGroups.SelectMany(x => x.Pins.Select(x => x.MaximumNameLength)).Max();
-        var bottomHeight = bottomGroups.SelectMany(x => x.Pins.Select(x => x.MaximumNameLength)).Max();
+        var topHeight = topGroups.SelectMany(x => x.Pins.Select(x => x.MaximumNameLength)).Union(new int[]{0}).Max();
+        var bottomHeight = bottomGroups.SelectMany(x => x.Pins.Select(x => x.MaximumNameLength)).Union(new int[]{0}).Max();
 
         var step = 100;
 
@@ -101,8 +101,8 @@ public class IntegratedCircuit : SymbolBase
         var topWidth = topGroups.Select(x => (x.Pins.Count - 1) * step).Sum() + (topGroups.Count - 1) * step;
         var bottomWidth = bottomGroups.Select(x => (x.Pins.Count - 1) * step).Sum() + (bottomGroups.Count - 1) * step;
 
-        var width = Math.Max(topWidth, bottomWidth) + leftWidth + rightWidth + step;
-        var height = new[] { leftHeight, rightHeight, topHeight + bottomHeight + step }.Max() + step * 2;
+        var width = Math.Max(topWidth, bottomWidth) + leftWidth + rightWidth + step * 3;
+        var height = new[] { leftHeight, rightHeight, topHeight + bottomHeight + step }.Max() + step * 3;
         
         comp.Rect(0, 0, width, height);
 
@@ -142,7 +142,7 @@ public class IntegratedCircuit : SymbolBase
             {
                 var sPin = pin.SchPin;
                 sPin.Orientation = TextOrientations.Rotated;
-                sPin.Location = CoordPoint.FromMils( pIdx * step - width/2 + leftWidth, height / 2);
+                sPin.Location = CoordPoint.FromMils( pIdx * step - width/2 + leftWidth + step, height / 2);
                 comp.Add(sPin);
                 ++pIdx;
             }
@@ -157,7 +157,7 @@ public class IntegratedCircuit : SymbolBase
             {
                 var sPin = pin.SchPin;
                 sPin.Orientation = TextOrientations.Rotated | TextOrientations.Flipped;
-                sPin.Location = CoordPoint.FromMils( pIdx * step - width/2 + leftWidth, -height / 2);
+                sPin.Location = CoordPoint.FromMils( pIdx * step - width/2 + leftWidth + step, -height / 2);
                 comp.Add(sPin);
                 ++pIdx;
             }
